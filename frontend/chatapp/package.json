@@ -1,0 +1,53 @@
+{
+  "name": "chatapp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.1.1",
+    "@reduxjs/toolkit": "^2.2.5",
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "formidable": "^3.5.1",
+    "formidable-serverless": "^1.1.1",
+    "framer-motion": "^11.9.0",
+    "googleapis": "^144.0.0",
+    "jose": "^5.9.6",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "link": "^2.1.1",
+    "mailto": "^0.1.2",
+    "net": "^1.0.2",
+    "next": "14.2.3",
+    "next-auth": "^4.24.10",
+    "nodemailer": "^6.9.15",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^5.2.1",
+    "react-phone-input-2": "^2.15.1",
+    "react-player": "^2.16.0",
+    "react-redux": "^9.1.2",
+    "react-select": "^5.9.0",
+    "react-toastify": "^10.0.5",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "xlsx": "^0.18.5",
+    "zlib": "^1.0.5",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1"
+  }
+}
