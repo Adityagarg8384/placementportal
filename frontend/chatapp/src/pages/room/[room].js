@@ -12,7 +12,6 @@ import { FaVideo, FaVideoSlash, FaMicrophone, FaMicrophoneSlash, FaPhoneSlash } 
 
 const Room = () => {
   const router = useRouter();
-  const { query, isReady } = router;
   const { socket } = useSocket()
   // const { peer, createOffer, createAnswer, setRemoteans, sendStream, remoteStream } = usePeer();
   const [nullstream, setNullstream] = useState(null)
@@ -27,15 +26,6 @@ const Room = () => {
   const videoRef = useRef(null);
   const myvideoRef = useRef(null);
   // const [remotestream, setRemotestream]= useState(null);
-
-  useEffect(()=>{
-    if (!isReady) return;
-    console.log("Request coming from ",query.from);
-    if (query.from !== 'temp') {
-      // If query parameter not found, redirect the user to the temp link
-      router.push('/temp');
-    }
-  }, [query, isReady, router]);
 
   const toggleVideo = useCallback(() => {
     if (mystream) {
@@ -159,23 +149,24 @@ const Room = () => {
 
   const leaveMeeting = useCallback(async () => {
     if (mystream) {
-      await mystream.getTracks().forEach(track => track.stop());
+      mystream.getTracks().forEach(track => track.stop());
       setMystream(null);
     }
 
     if (remoteStream) {
-      await remoteStream.getTracks().forEach(track => track.stop());
+      remoteStream.getTracks().forEach(track => track.stop());
       setRemoteStream(null);
     }
     await peer.clearDescriptions();
 
     if (peer.peer) {
       peer.peer.close();
+
     }
 
     socket.emit("disconnect-call");
     if (socket) {
-      await socket.disconnect();
+      socket.disconnect();
     }
 
     await navigator.mediaDevices.getUserMedia({ audio: true })
@@ -228,7 +219,7 @@ const Room = () => {
         setRemoteStream(remoteStreams[0]);
       }
     };
-    peer.initializePeer();
+
     peer.peer.addEventListener("track", trackHandler);
     return () => {
       peer.peer.removeEventListener("track", trackHandler);
@@ -264,10 +255,7 @@ const Room = () => {
   }, [])
 
   useEffect(() => {
-    
-    if(peer){
     peer.peer.addEventListener("negotiationneeded", handleNegoNeeded);
-    }
 
     return () => {
       peer.peer.removeEventListener("negotiationneeded", handleNegoNeeded);
@@ -289,7 +277,6 @@ const Room = () => {
       sessionStorage.removeItem("isReload"); // Clean up on unmount
     };
   }, [leaveMeeting]);
-
   return (
     <div className='flex flex-col h-screen w-full'>
       {/* <h1>Room Page</h1> */}

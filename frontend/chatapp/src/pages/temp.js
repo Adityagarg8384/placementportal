@@ -40,10 +40,12 @@ const Temp = () => {
 
   const handleroomjoined = useCallback((data) => {
     const { username, roomid } = data;
-    router.push({
-      pathname: `/room/${roomid}`,
-      query: { from: 'temp' }
-    });
+    // router.push({
+    //   pathname: `/room/${roomid}`,
+    //   query: { from: 'temp' }
+    // });
+    console.log("Room id is ", roomid);
+    router.push(`/room/${roomid}`)
   }, [router])
 
   useEffect(() => {

@@ -1,39 +1,39 @@
 class PeerService {
-  // constructor() {
-  //   if (!this.peer) {
-  //     this.peer = new RTCPeerConnection({
-  //       iceServers: [
-  //         {
-  //           urls: [
-  //             "stun:stun.l.google.com:19302",
-  //             "stun:global.stun.twilio.com:3478",
-  //           ],
-  //         },
-  //       ],
-  //     });
-  //   }
-  // }
-
-  initializePeer() {
+  constructor() {
     if (!this.peer) {
-      // Use vendor prefixes for compatibility if needed
-      const RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
-      if (RTCPeerConnection) {
-        this.peer = new RTCPeerConnection({
-          iceServers: [
-            {
-              urls: [
-                "stun:stun.l.google.com:19302",
-                "stun:global.stun.twilio.com:3478",
-              ],
-            },
-          ],
-        });
-      } else {
-        console.error("RTCPeerConnection is not available in this browser.");
-      }
+      this.peer = new RTCPeerConnection({
+        iceServers: [
+          {
+            urls: [
+              "stun:stun.l.google.com:19302",
+              "stun:global.stun.twilio.com:3478",
+            ],
+          },
+        ],
+      });
     }
   }
+
+  // initializePeer() {
+  //   if (!this.peer) {
+  //     // Use vendor prefixes for compatibility if needed
+  //     const RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
+  //     if (RTCPeerConnection) {
+  //       this.peer = new RTCPeerConnection({
+  //         iceServers: [
+  //           {
+  //             urls: [
+  //               "stun:stun.l.google.com:19302",
+  //               "stun:global.stun.twilio.com:3478",
+  //             ],
+  //           },
+  //         ],
+  //       });
+  //     } else {
+  //       console.error("RTCPeerConnection is not available in this browser.");
+  //     }
+  //   }
+  // }
 
   async getAnswer(offer) {
     if (!offer || !offer.type || !offer.sdp) {
