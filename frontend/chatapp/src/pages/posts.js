@@ -15,7 +15,7 @@ const PostPage = () => {
 
     const fetchPosts = async () => {
         try {
-            const response = await fetch("http://localhost:3000/getallpost", {
+            const response = await fetch("https://placementportal-hhm9.onrender.com/getallpost", {
                 method: "GET",
                 credentials: "include",
             });

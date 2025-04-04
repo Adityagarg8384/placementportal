@@ -53,11 +53,18 @@ const signup = async (req, res) => {
             }
         );
 
+        // const options = {
+        //     expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        //     httpOnly: false,
+        //     secure: false,
+        //     domain: "localhost",
+        // };
+
         const options = {
-            expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-            httpOnly: false,
+            httpOnly: true,
             secure: false,
-            domain: "localhost",
+            sameSite: 'lax', // or 'none' if using HTTPS
+            expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         };
 
         res.cookie("token", token, options);
@@ -115,11 +122,18 @@ const login = async (req, res) => {
             }
         );
 
+        // const options = {
+        //     expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        //     httpOnly: false,
+        //     secure: false,
+        //     domain: "localhost",
+        // };
+
         const options = {
-            expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-            httpOnly: false,
+            httpOnly: true,
             secure: false,
-            domain: "localhost",
+            sameSite: 'lax', // or 'none' if using HTTPS
+            expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         };
 
         res.cookie("token", token, options);

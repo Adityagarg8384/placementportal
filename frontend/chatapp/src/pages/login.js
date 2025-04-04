@@ -79,7 +79,7 @@ export const Login = () => {
         if (!validateForm()) return;
         setErrormessage("")
         try {
-            const response = await fetch("http://localhost:3000/login", {
+            const response = await fetch("https://placementportal-hhm9.onrender.com/login", {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
@@ -94,6 +94,7 @@ export const Login = () => {
             if (res.status === 404) {
                 setErrormessage(res?.message)
             } else {
+                console.log(res);
                 const role = data.student ? "student" : "recruiter";
                 localStorage.setItem("role-data", role);
 
@@ -101,6 +102,8 @@ export const Login = () => {
                 localStorage.setItem("user-chat", JSON.stringify(res?.user));
                 updateUser(res.user);
 
+                console.log("Hello world");
+                console.log(role);
                 if(role=="student"){
                     router.push("/posts")
                 }

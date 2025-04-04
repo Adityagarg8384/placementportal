@@ -54,7 +54,7 @@ export const Register = () => {
             return;
         }
         try {
-            const response = await fetch("http://localhost:3000/signup", {
+            const response = await fetch("https://placementportal-hhm9.onrender.com/signup", {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {

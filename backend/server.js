@@ -28,9 +28,11 @@ const storage=multer.diskStorage({
 const upl= multer({storage:storage})
 
 const corsOptions = {
-    origin: true, 
-    credentials: true, 
-};
+    origin: function (origin, callback) {
+      callback(null, origin); // Allow all origins (not '*')
+    },
+    credentials: true, // This allows cookies to be sent
+  };
 
 const app = express();
 const server = http.createServer(app);

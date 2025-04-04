@@ -20,7 +20,7 @@ const Component2 = ({ showComponent2, setShowComponent2 }) => {
         // console.log(user);
         const fetchUserData = async () => {
             try {
-                const response = await fetch("http://localhost:3000/getalluser", {
+                const response = await fetch("https://placementportal-hhm9.onrender.com/getalluser", {
                     method: "GET",
                     credentials: "include",
                 });
@@ -42,7 +42,7 @@ const Component2 = ({ showComponent2, setShowComponent2 }) => {
 
         const fetchRecruiterDate = async () => {
             try {
-                const response = await fetch("http://localhost:3000/getrecruiter", {
+                const response = await fetch("https://placementportal-hhm9.onrender.com/getrecruiter", {
                     method: "GET",
                     credentials: "include",
                 });
