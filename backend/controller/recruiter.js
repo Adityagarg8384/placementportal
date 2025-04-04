@@ -1,6 +1,25 @@
 const mongoose = require("mongoose");
 const recruiterSchema = require("../models/recruiter");
 
+const getrecruiter= async (req, res)=>{
+    try{
+        const recruiters = await recruiterSchema.find();
+
+        // console.log("Recruiters data fetched is", recruiters);
+        return res.status(200).json({
+            success: true,
+            message: "Users retrieved successfully",
+            body: recruiters,
+        });
+    }
+    catch(err){
+        res.status(500).json({
+            success: false,
+            message: "Unable to retrieve Recruiters",
+        });
+    }
+}
+
 const updaterecruiter = async (req, res) => {
     try {
         const id = req.params._id; // Get the recruiter ID from the request parameters
@@ -66,4 +85,4 @@ const getspecificrecruiter = async (req, res) => {
     }
 }
 
-module.exports = { updaterecruiter, getspecificrecruiter };
+module.exports = { updaterecruiter, getspecificrecruiter, getrecruiter };

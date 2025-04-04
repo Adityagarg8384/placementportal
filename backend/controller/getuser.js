@@ -117,5 +117,24 @@ const removejobapplied= async(req, res)=>{
     }
 }
 
+const getalluser= async(req, res)=>{
+    try{
+        const users = await userSchema.find();
+        
+                // console.log("Recruiters data fetched is", recruiters);
+        return res.status(200).json({
+            success: true,
+            message: "Users retrieved successfully",
+            body: users,
+        });
+    }
+    catch(err){
+        res.status(500).json({
+            success: false,
+            message: "Unable to retrieve Recruiters",
+        });
+    }
+}
 
-module.exports = { getuser, getuserpost, updateuser, getspecificuser, removejobapplied };
+
+module.exports = { getuser, getuserpost, updateuser, getspecificuser, removejobapplied, getalluser };

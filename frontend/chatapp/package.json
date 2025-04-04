@@ -40,6 +40,7 @@
     "react-toastify": "^10.0.5",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1",
+    "uuid": "^11.1.0",
     "xlsx": "^0.18.5",
     "zlib": "^1.0.5",
     "zustand": "^4.5.2"

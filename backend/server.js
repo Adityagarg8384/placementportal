@@ -4,12 +4,13 @@ const cors = require("cors");
 const router = require("./routes/router");
 const cookieParser = require("cookie-parser");
 const checkauth = require("./middleware/checkauth");
-const {getuser, getuserpost, updateuser, getspecificuser, removejobapplied} = require("./controller/getuser");
+const {getuser, getuserpost, updateuser, getspecificuser, removejobapplied, getalluser} = require("./controller/getuser");
 const {sendmessage, receivemessage}= require("./controller/send")
 const {upload, createpost, getallpost, getpost}= require("./controller/uploadpost")
 const {uploadfiletodrive, deletefileupload}= require("./controller/pdfupload")
+const {sendrecruitermessage, receiverecruitermessage}= require("./controller/recruitersend");
 const {pdfmiddleware}= require("./middleware/pdfupload")
-const {updaterecruiter, getspecificrecruiter}= require("./controller/recruiter");
+const {updaterecruiter, getspecificrecruiter, getrecruiter}= require("./controller/recruiter");
 const bodyParser= require("body-parser")
 const multer= require("multer");
 const http= require("http");
@@ -47,6 +48,9 @@ app.use(express.urlencoded({extended:false}));
 app.get("/getuser", checkauth,getuser);
 app.post("/send/:id", checkauth, sendmessage);
 app.get("/receive/:id", checkauth, receivemessage);
+
+app.post("/sendrecruitermessage/:id", checkauth,sendrecruitermessage)
+app.get("/receiverecruitermessage/:id", checkauth, receiverecruitermessage)
 app.post("/upload",upl.single('image'), upload);
 app.post("/createpost", createpost)
 app.get("/getallpost", getallpost);
@@ -57,7 +61,8 @@ app.get("/getspecificuser", checkauth, getspecificuser);
 app.put("/removejobapplied",checkauth, removejobapplied);
 app.put("/updaterecruiter/:_id", updaterecruiter);
 app.get("/getspecificrecruiter", checkauth, getspecificrecruiter);
-
+app.get("/getrecruiter", checkauth, getrecruiter);
+app.get("/getalluser", getalluser)
 app.get("/getpost/:id", getpost);
 
 app.use("/", router);

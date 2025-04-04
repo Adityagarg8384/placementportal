@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const userSchema = require("../models/user");
+const recruiterschema = require("../models/recruiter");
 
 const checkauth = async (req, res, next) => {
     try {
@@ -16,14 +17,24 @@ const checkauth = async (req, res, next) => {
         }
 
         const user = await userSchema.findById(decode.id);
+        const recruiter= await recruiterschema.findById(decode.id);
+        // console.log("User", user);
+        // console.log("Recruiter", recruiter);
 
-        if (!user) {
+        if (user==null && recruiter==null) {
             return res.status(404).send("User not found");
         }
-
-        user.password = undefined;
-
-        req.user = user;
+        // console.log()
+        if(user){
+            user.password = undefined;
+            req.user = user;
+        }
+        if(recruiter){
+            recruiter.password=undefined;
+            req.recruiter=recruiter
+        }
+        
+        
         next();
     } catch (err) {
         if (!res.headersSent) {

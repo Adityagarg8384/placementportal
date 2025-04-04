@@ -19,5 +19,25 @@ const tex = mongoose.Schema({
 {timestamps:true}
 );
 
+const recrutiertex= mongoose.Schema({
+    senderid:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"recruiterSchema",
+        required:true,
+    },
+    receiverid:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"userSchema",
+        required:true,
+    },
+    message:{
+        type:String,
+    }
+},
+{timestamps:true}
+)
+
+
 const text = mongoose.model("text", tex);
-module.exports = text;
+const recruitertext= mongoose.model("recruitertext", recrutiertex);
+module.exports = {text, recruitertext};

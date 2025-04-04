@@ -76,6 +76,11 @@ const Layout = ({ children }) => {
                                 Profile
                             </a>
                         </li>
+                        <li className="mb-4">
+                            <a href="/chat" className="nav-item text-white p-3 block rounded">
+                                Chat
+                            </a>
+                        </li>
                         {role === "recruiter" && (
                             <>
                                 <li className="mb-4">

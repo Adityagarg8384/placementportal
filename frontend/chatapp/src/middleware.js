@@ -27,7 +27,7 @@ export async function middleware(req) {
 
             const role = payload.role
 
-            const studentProtectedRoutes = ["/chat", "/post/:path*", "/posts"];
+            const studentProtectedRoutes = ["/post/:path*", "/posts"];
             const recruiterProtectedRoutes = ["/createpost", "/recruiterpost", "/recruiterdashboard"];
 
             if (role === "student" && recruiterProtectedRoutes.includes(req.nextUrl.pathname)) {

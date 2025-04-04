@@ -11,15 +11,17 @@ import { useSocket } from '@/context/Socket';
 // const socket = io("http://localhost:3000");
 
 const Component3part2part2 = () => {
-    const socket= useSocket()
+    const {socket}= useSocket()
     const { selectedConversation } = useConversation();
     const [message, setMessage] = useState([]);
     const [text, setText] = useState("");
-    const { user } = useFileContext();
+    const { user,role } = useFileContext();
 
     const scrollLast = useRef();
 
     useEffect(() => {
+
+        console.log("Selected Conversation", selectedConversation)
         setTimeout(() => {
             scrollLast?.current?.scrollIntoView({ behavior: "smooth" });
         }, 100)
@@ -52,13 +54,57 @@ const Component3part2part2 = () => {
             const res = await response?.json();
             setMessage(res);
         } catch (error) {
+            // const e= error?.json();
+            console.log(error);
             console.error("Failed to fetch messages:", error);
         }
     };
+    
+    const recruiterreceive= async()=>{
+        try {
+            if (!selectedConversation || !selectedConversation?._id) {
+                throw new Error("Selected conversation is invalid");
+            }
+
+            const response = await fetch(`http://localhost:3000/receiverecruitermessage/${selectedConversation?._id}`, {
+                method: "GET",
+                credentials: "include",
+            });
+
+            if (!response?.ok) {
+                await fetch(`http://localhost:3000/sendrecruitermessage/${selectedConversation?._id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({ message: "Hi" })
+                });
+                throw new Error(`HTTP error! status: ${response?.status}`);
+            }
+
+            const res = await response?.json();
+            setMessage(res);
+        } catch (error) {
+            // const e= error?.json();
+            console.log(error);
+            console.error("Failed to fetch messages:", error);
+        }
+    }
 
     useEffect(() => {
         if (selectedConversation) {
-            receive();
+
+            if(role== "recruiter"){
+                recruiterreceive();
+            }
+            else if(role=="student" && selectedConversation?.companyname){
+                recruiterreceive();
+            }
+            else{
+                receive();
+            }  
             // Placeholder for future image fetch functions
             // getReceiverImage();
             // getSenderImage();
@@ -99,6 +145,33 @@ const Component3part2part2 = () => {
             setText(""); 
         } catch (err) {
             console.error(err);
+        }
+    }
+
+    const handleRecruiterSubmit= async()=>{
+        try{
+            const response = await fetch(`http://localhost:3000/sendrecruitermessage/${selectedConversation?._id}`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials: "include",
+                body: JSON.stringify({ message: text })
+            });
+            const data = await response.json();
+
+            socket.emit("private message", {
+                senderid: user?._id,
+                recipientId: selectedConversation?._id,
+                message: text
+            });
+
+            setMessage((prevMessages) => [...prevMessages, data?.message]);
+            setText(""); 
+        }
+        catch(err){
+
         }
     }
 
@@ -149,15 +222,26 @@ const Component3part2part2 = () => {
             </div>
             <div className='w-full  py-4 bg-[#2a2b2d] flex flex-row justify-center items-center mt-auto'>
                 <input
-                    placeholder='Send a message'
+                    placeholder={selectedConversation?.companyname ?"You are not allowed to send Message": "Send Message" }
                     className='rounded-full w-8/12 sm:w-6/12 p-3 bg-[#212631] text-white border-2 border-[#575757]'
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
-                            handleSubmit();
+
+                            if(role== "recruiter"){
+                                handleRecruiterSubmit();
+                            }
+                            else if(role=="student" && selectedConversation?.companyname){
+                                handleRecruiterSubmit();
+                            }
+                            else{
+                                handleSubmit();
+                            }  
+                           
                         }
                     }}
+                    disabled={selectedConversation?.companyname}
                 />
                 <button
                     className='top-0 right-0 mt-2 hover:bg-[#303135]'
