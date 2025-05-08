@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router';
 import { FiLogOut, FiArrowRight, FiArrowLeft } from 'react-icons/fi';
 import { useFileContext } from '@/context/Auth';
+import Link from 'next/link';
 
 const Layout = ({ children }) => {
     const router = useRouter();
@@ -51,54 +52,54 @@ const Layout = ({ children }) => {
                 <div>
                     <h1 className="text-2xl font-semibold text-center">Dashboard</h1>
                     <div className="flex items-center justify-center mt-4 mb-4">
-                        <a href="/profile" className="flex items-center">
+                        <Link href="/profile" className="flex items-center">
                             <img
                                 src={profilelink}
                                 alt="User Profile"
                                 className="w-20 h-20 profile-image"
                             />
-                        </a>
+                        </Link>
                     </div>
 
                     <ul className="mt-10">
                         <li className="mb-4">
                             {role == "student" ?
-                                <a href="/posts" className="nav-item text-white p-3 block rounded">
+                                <Link href="/posts" className="nav-item text-white p-3 block rounded">
                                     Home
-                                </a> :
-                                <a href="/recruiterdashboard" className="nav-item text-white p-3 block rounded">
+                                </Link> :
+                                <Link href="/recruiterdashboard" className="nav-item text-white p-3 block rounded">
                                     Home
-                                </a>
+                                </Link>
                             }
                         </li>
                         <li className="mb-4">
-                            <a href="/profile" className="nav-item text-white p-3 block rounded">
+                            <Link href="/profile" className="nav-item text-white p-3 block rounded">
                                 Profile
-                            </a>
+                            </Link>
                         </li>
                         <li className="mb-4">
-                            <a href="/chat" className="nav-item text-white p-3 block rounded">
+                            <Link href="/chat" className="nav-item text-white p-3 block rounded">
                                 Chat
-                            </a>
+                            </Link>
                         </li>
                         {role === "recruiter" && (
                             <>
                                 <li className="mb-4">
-                                    <a href="/createpost" className="nav-item text-white p-3 block rounded">
+                                    <Link href="/createpost" className="nav-item text-white p-3 block rounded">
                                         Create Post
-                                    </a>
+                                    </Link>
                                 </li>
                             </>
                         )}
                         <li className="mb-4">
-                            <a href="/query" className="nav-item text-white p-3 block rounded">
+                            <Link href="/query" className="nav-item text-white p-3 block rounded">
                                 Query
-                            </a>
+                            </Link>
                         </li>
                         <li className="mb-4">
-                            <a href="/contact" className="nav-item text-white p-3 block rounded">
+                            <Link href="/contact" className="nav-item text-white p-3 block rounded">
                                 Contact
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
