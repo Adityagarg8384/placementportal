@@ -2,9 +2,9 @@ import { NextResponse } from 'next/server';
 import { jwtVerify } from "jose";
 
 export async function middleware(req) {
-    // const token = req.cookies.get("token")?.value;
+    const token = req.cookies.get("token")?.value;
 
-    const token = req?.cookies?.get("token"); 
+    // const token = req?.cookies?.get("token"); 
     // const token= localStorage.getItem("token");
     console.log("Token is ", token);
 
