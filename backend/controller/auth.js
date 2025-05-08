@@ -123,11 +123,11 @@ const login = async (req, res) => {
 
         };
 
-        res.cookie("token", token, options);
+        // res.cookie("token", token, options);
 
         user.password = undefined;
 
-        return res.status(200).json({
+        return res.status(200).cookie("token", token, options).json({
             message: "Success",
             status: 200,
             success: true,
