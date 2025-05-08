@@ -34,6 +34,14 @@ const allowedOrigins = [
 ];
 
 // 2) Apply the same CORS policy to Express HTTP routes:
+const app = express();
+const server = http.createServer(app);
+
+const emailtosocketmapping = new Map()
+const sockettoemailmapping = new Map();
+setupSocket(app, server, emailtosocketmapping, sockettoemailmapping);
+
+app.use(express.json());
 app.use(cors({
     origin: (origin, callback) => {
         // allow requests with no origin (mobile apps, curl, postman, etc.)
@@ -47,15 +55,7 @@ app.use(cors({
     credentials: true
 }));
 
-const app = express();
-const server = http.createServer(app);
-
-const emailtosocketmapping = new Map()
-const sockettoemailmapping = new Map();
-setupSocket(app, server, emailtosocketmapping, sockettoemailmapping);
-
-app.use(express.json());
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 // app.use(bodyParser)
