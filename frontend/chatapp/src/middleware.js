@@ -3,7 +3,9 @@ import { jwtVerify } from "jose";
 
 export async function middleware(req) {
     // const token = req?.cookies?.get("token")?.value;
-
+    console.log("Hello world");
+    const cookieHeader = req.headers.get('cookie');
+    console.log("Cookie Header is ", cookieHeader);
     const token = req?.cookies?.get("token"); 
     // const token= localStorage.getItem("token");
     console.log("Token is ", token);
