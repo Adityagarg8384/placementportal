@@ -2,10 +2,10 @@ import { NextResponse } from 'next/server';
 import { jwtVerify } from "jose";
 
 export async function middleware(req) {
-    // const token = req.cookies.get("token")?.value;
+    const token = req.cookies.get("token")?.value;
 
     // const token = req?.cookies?.get("token"); 
-    const token= localStorage.getItem("token");
+    // const token= localStorage.getItem("token");
     console.log("Token is ", token);
 
     const loginUrl = process.env.NEXT_PUBLIC_LOGIN_URL || "http://localhost:3001/login";
