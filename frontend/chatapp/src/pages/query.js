@@ -118,7 +118,7 @@ const Query = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="mb-4">
             <label htmlFor="reason" className="block text-gray-700 font-semibold mb-2">
-              I'd like to chat about...
+              I had like to chat about...
             </label>
             {role === "student" ? (
               <select
