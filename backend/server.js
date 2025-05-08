@@ -28,7 +28,7 @@ const storage=multer.diskStorage({
 const upl= multer({storage:storage})
 
 const corsOptions = {
-    origin: true,
+    origin: 'https://placementportal-eta.vercel.app',
     credentials: true, // This allows cookies to be sent
   };
 

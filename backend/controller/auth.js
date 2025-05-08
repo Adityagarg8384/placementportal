@@ -36,8 +36,8 @@ const signup = async (req, res) => {
                 profilepic: avatar,
             });
         }
-        else{
-            user= await recruiterSchema.create({
+        else {
+            user = await recruiterSchema.create({
                 fullname: fullname,
                 username: username,
                 password: encryptedPassword,
@@ -46,7 +46,7 @@ const signup = async (req, res) => {
         }
 
         const token = jwt.sign(
-            { id: user._id, username, role: student==true? "student": "recruiter" },
+            { id: user._id, username, role: student == true ? "student" : "recruiter" },
             'shhh', // Change this to your actual secret key
             {
                 expiresIn: "2h",
@@ -108,7 +108,7 @@ const login = async (req, res) => {
         }
 
         const token = jwt.sign(
-            { id: user._id, role: student==true? "student": "recruiter"},
+            { id: user._id, role: student == true ? "student" : "recruiter" },
             'shhh', // Change this to your actual secret key
             {
                 expiresIn: "2h",
@@ -116,9 +116,11 @@ const login = async (req, res) => {
         );
 
         const options = {
-            expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-            httpOnly: false,
-            secure: false,
+            httpOnly: true,
+            secure: true,       // important for cross-origin
+            sameSite: 'None',   // must be None for cross-site cookies
+            expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000) // 3 days
+
         };
 
         res.cookie("token", token, options);
