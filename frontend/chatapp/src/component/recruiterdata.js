@@ -92,6 +92,7 @@ const Recruiterdata = ({ recruiterpostid }) => {
 
     const handleDownload = async () => {
         try {
+            console.log("In handledownloaded")
             const response = await axios.post("/api/downloadsheet", {
                 spreadsheetid: post?.spreadsheetid,
             }, {

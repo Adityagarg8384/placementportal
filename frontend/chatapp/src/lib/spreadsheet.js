@@ -15,22 +15,39 @@ import stream from "stream";
 
 // oauth2Client.setCredentials({ refresh_token: REFRESHTOKEN })
 
-// const KEYFILEPATH = "tnpportal-65864e4ee570.json"; // Path to your JSON key file
-const KEYFILEPATH= process.env.KEYFILEPATH
+const KEYFILEPATH = "tnpportal-65864e4ee570.json"; // Path to your JSON key file
+// const KEYFILEPATH= 
 const SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file"
-  ];
-  
+];
 
-export const createsheet = async (title) => {
+
+export const createspreadsheet = async (title) => {
     try {
         console.log("Key filepath is ", KEYFILEPATH);
+        // const auth = new google.auth.GoogleAuth({
+        //                 keyFile: KEYFILEPATH,
+        //                 scopes: SCOPES,
+        //             });
+
         const auth = new google.auth.GoogleAuth({
-                        keyFile: KEYFILEPATH,
-                        scopes: SCOPES,
-                    });
-        
+            credentials: {
+                "type": "service_account",
+                "project_id": "tnpportal",
+                "private_key_id": process.env.PRIVATE_KEY_ID,
+                "private_key": process.env.PRIVATE_KEY,
+                "client_email": process.env.CLIENT_EMAIL,
+                "client_id": process.env.CLIENT_ID,
+                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                "token_uri": "https://oauth2.googleapis.com/token",
+                "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                "client_x509_cert_url": process.env.CLIENT_CERT_URL,
+                "universe_domain": "googleapis.com"
+            },
+            scopes: SCOPES,
+        });
+
         const drive = google.drive({ version: "v3", auth });
         const sheets = google.sheets({ version: 'v4', auth });
         // const drive = google.drive({ version: 'v3', auth: oauth2Client });
@@ -99,16 +116,33 @@ export const createsheet = async (title) => {
 }
 
 
-export const addsheet = async (id, data) => {
+export const addspreadsheet = async (id, data) => {
     try {
 
+        // const auth = new google.auth.GoogleAuth({
+        //     keyFile: KEYFILEPATH,
+        //     scopes: SCOPES,
+        // });
+
         const auth = new google.auth.GoogleAuth({
-            keyFile: KEYFILEPATH,
+            credentials: {
+                "type": "service_account",
+                "project_id": "tnpportal",
+                "private_key_id": process.env.PRIVATE_KEY_ID,
+                "private_key": process.env.PRIVATE_KEY,
+                "client_email": process.env.CLIENT_EMAIL,
+                "client_id": process.env.CLIENT_ID,
+                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                "token_uri": "https://oauth2.googleapis.com/token",
+                "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                "client_x509_cert_url": process.env.CLIENT_CERT_URL,
+                "universe_domain": "googleapis.com"
+            },
             scopes: SCOPES,
         });
 
         const sheets = google.sheets({ version: 'v4', auth });
-        const b= `https://drive.google.com/file/d/${data?.pdfid}`
+        const b = `https://drive.google.com/file/d/${data?.pdfid}`
         // data?.pdfid= 
 
         // const sheets = google.sheets({ version: 'v4', auth: oauth2Client, params: { "key": process.env.CLOUDAPIKEY } });
@@ -121,7 +155,7 @@ export const addsheet = async (id, data) => {
                 values: [
 
                     [data?._id, data?.fullname, data?.dob, data?.Age, data?.collegename, data?.degree, data?.gender, data?.emailid,
-                    data?.phonenumber, data?.sem1cgpa, data?.sem2cgpa, data?.sem3cgpa, data?.sem4cgpa, data?.sem5cgpa, 
+                    data?.phonenumber, data?.sem1cgpa, data?.sem2cgpa, data?.sem3cgpa, data?.sem4cgpa, data?.sem5cgpa,
                     data?.sem6cgpa, data?.sem7cgpa, data?.sem8cgpa, b],
                 ],
             },
@@ -135,10 +169,27 @@ export const addsheet = async (id, data) => {
 
 }
 
-export const deletesheet = async (spreadsheetid, userid) => {
+export const deletespreadsheet = async (spreadsheetid, userid) => {
     try {
+        // const auth = new google.auth.GoogleAuth({
+        //     keyFile: KEYFILEPATH,
+        //     scopes: SCOPES,
+        // });
+
         const auth = new google.auth.GoogleAuth({
-            keyFile: KEYFILEPATH,
+            credentials: {
+                "type": "service_account",
+                "project_id": "tnpportal",
+                "private_key_id": process.env.PRIVATE_KEY_ID,
+                "private_key": process.env.PRIVATE_KEY,
+                "client_email": process.env.CLIENT_EMAIL,
+                "client_id": process.env.CLIENT_ID,
+                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                "token_uri": "https://oauth2.googleapis.com/token",
+                "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                "client_x509_cert_url": process.env.CLIENT_CERT_URL,
+                "universe_domain": "googleapis.com"
+            },
             scopes: SCOPES,
         });
 
@@ -179,19 +230,42 @@ export const deletesheet = async (spreadsheetid, userid) => {
     }
 }
 
-export const downloadsheet = async (spreadsheetId) => {
+export const downloadspreadsheet = async (spreadsheetId) => {
     try {
+        console.log(KEYFILEPATH)
         // Initialize the Google Drive API client
+        console.log("Hello india");
+        // const auth = new google.auth.GoogleAuth({
+        //     keyFile: KEYFILEPATH,
+        //     scopes: SCOPES,
+        // });
+
         const auth = new google.auth.GoogleAuth({
-            keyFile: KEYFILEPATH,
+            credentials: {
+                "type": "service_account",
+                "project_id": "tnpportal",
+                "private_key_id": process.env.PRIVATE_KEY_ID,
+                "private_key": process.env.PRIVATE_KEY,
+                "client_email": process.env.CLIENT_EMAIL,
+                "client_id": process.env.CLIENT_ID,
+                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                "token_uri": "https://oauth2.googleapis.com/token",
+                "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                "client_x509_cert_url": process.env.CLIENT_CERT_URL,
+                "universe_domain": "googleapis.com"
+            },
             scopes: SCOPES,
         });
+
+        console.log("Hello india2");
 
         const drive = google.drive({ version: "v3", auth });
         const sheets = google.sheets({ version: 'v4', auth });
         // const drive = google.drive({ version: 'v3', auth: oauth2Client });
 
         // Export the spreadsheet in CSV format
+        console.log("Hello world");
+        console.log(spreadsheetId)
         const response = await drive.files.export(
             {
                 fileId: spreadsheetId,
@@ -200,11 +274,13 @@ export const downloadsheet = async (spreadsheetId) => {
             { responseType: 'stream' }  // Return the data as a stream
         );
 
+        console.log("Hello universe")
+
         // Return the response stream
         return response?.data;  // This is the stream you will pipe in the API route
 
     } catch (err) {
-        console.error('Error downloading spreadsheet:', err);
+        // console.error('Error downloading spreadsheet:', err);
         throw err;  // Handle the error in the API route
     }
 };

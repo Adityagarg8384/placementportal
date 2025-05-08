@@ -1,6 +1,6 @@
 class PeerService {
   constructor() {
-    if (typeof window !== "undefined") {
+    // if (typeof window !== "undefined") {
       if (!this.peer) {
         this.peer = new RTCPeerConnection({
           iceServers: [
@@ -13,7 +13,7 @@ class PeerService {
           ],
         });
       }
-    }
+    // }
   }
 
   // initializePeer() {

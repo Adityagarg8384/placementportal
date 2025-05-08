@@ -3,7 +3,7 @@ import stream from "stream";
 import zlib from "zlib"
 import fs from "fs";
 
-const KEYFILEPATH = process.env.KEYFILEPATH
+const KEYFILEPATH = "tnpportal-65864e4ee570.json";
 const SCOPES = ["https://www.googleapis.com/auth/drive"];
 
 // const auth = new google.auth.GoogleAuth({
@@ -28,8 +28,24 @@ oauth2Client.setCredentials({ refresh_token: REFRESHTOKEN })
 export const uploadfiletodrive = async (pdfbuffer, pdfname) => {
     return new Promise(async (resolve, reject) => {
         try {
+            // const auth = new google.auth.GoogleAuth({
+            //     keyFile: KEYFILEPATH,
+            //     scopes: SCOPES,
+            // });
             const auth = new google.auth.GoogleAuth({
-                keyFile: KEYFILEPATH,
+                credentials: {
+                    "type": "service_account",
+                    "project_id": "tnpportal",
+                    "private_key_id": process.env.PRIVATE_KEY_ID,
+                    "private_key": process.env.PRIVATE_KEY,
+                    "client_email": process.env.CLIENT_EMAIL,
+                    "client_id": process.env.CLIENT_ID,
+                    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                    "token_uri": "https://oauth2.googleapis.com/token",
+                    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                    "client_x509_cert_url": process.env.CLIENT_CERT_URL,
+                    "universe_domain": "googleapis.com"
+                },
                 scopes: SCOPES,
             });
 
@@ -98,8 +114,25 @@ export const deletefilefromdrive = async (pdfid) => {
         // console.log("Hello world");
         // const drive = google.drive({ version: "v3", auth: oauth2Client, params: { "key": process.env.CLOUDAPIKEY } });
         // console.log(drive);
+        // const auth = new google.auth.GoogleAuth({
+        //     keyFile: KEYFILEPATH,
+        //     scopes: SCOPES,
+        // });
+
         const auth = new google.auth.GoogleAuth({
-            keyFile: KEYFILEPATH,
+            credentials: {
+                "type": "service_account",
+                "project_id": "tnpportal",
+                "private_key_id": process.env.PRIVATE_KEY_ID,
+                "private_key": process.env.PRIVATE_KEY,
+                "client_email": process.env.CLIENT_EMAIL,
+                "client_id": process.env.CLIENT_ID,
+                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                "token_uri": "https://oauth2.googleapis.com/token",
+                "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                "client_x509_cert_url": process.env.CLIENT_CERT_URL,
+                "universe_domain": "googleapis.com"
+            },
             scopes: SCOPES,
         });
 
@@ -128,8 +161,25 @@ export const downloadpdf = async (pdfid) => {
         //     auth: oauth2Client,
         //     params: { key: process.env.CLOUDAPIKEY }
         // });
+        // const auth = new google.auth.GoogleAuth({
+        //     keyFile: KEYFILEPATH,
+        //     scopes: SCOPES,
+        // });
+
         const auth = new google.auth.GoogleAuth({
-            keyFile: KEYFILEPATH,
+            credentials: {
+                "type": "service_account",
+                "project_id": "tnpportal",
+                "private_key_id": process.env.PRIVATE_KEY_ID,
+                "private_key": process.env.PRIVATE_KEY,
+                "client_email": process.env.CLIENT_EMAIL,
+                "client_id": process.env.CLIENT_ID,
+                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                "token_uri": "https://oauth2.googleapis.com/token",
+                "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                "client_x509_cert_url": process.env.CLIENT_CERT_URL,
+                "universe_domain": "googleapis.com"
+            },
             scopes: SCOPES,
         });
 

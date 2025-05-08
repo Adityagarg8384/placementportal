@@ -43,6 +43,8 @@ setupSocket(app, server, emailtosocketmapping, sockettoemailmapping);
 
 app.use(express.json());
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 app.use(cookieParser());
 app.use(express.urlencoded({extended:false}));
 // app.use(bodyParser)
