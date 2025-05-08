@@ -3,13 +3,15 @@ import stream from "stream";
 import zlib from "zlib"
 import fs from "fs";
 
-const KEYFILEPATH = "tnpportal-65864e4ee570.json"; 
+// const KEYFILEPATH = "tnpportal-65864e4ee570.json"; 
 const SCOPES = ["https://www.googleapis.com/auth/drive"];
 
 // const auth = new google.auth.GoogleAuth({
 //     keyFile: KEYFILEPATH,
 //     scopes: SCOPES,
 // });
+
+const KEYFILEPATH= process.env.TNPPORTAL_ENCODED
 
 const CLIENTID = process.env.CLIENTID
 const CLIENTSECRET = process.env.CLIENTSECRET

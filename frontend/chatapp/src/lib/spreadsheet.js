@@ -15,7 +15,8 @@ import stream from "stream";
 
 // oauth2Client.setCredentials({ refresh_token: REFRESHTOKEN })
 
-const KEYFILEPATH = "tnpportal-65864e4ee570.json"; // Path to your JSON key file
+// const KEYFILEPATH = "tnpportal-65864e4ee570.json"; // Path to your JSON key file
+const KEYFILEPATH= process.env.TNPPORTAL_ENCODED
 const SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file"
