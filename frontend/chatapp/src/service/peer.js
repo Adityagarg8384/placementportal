@@ -1,20 +1,22 @@
 class PeerService {
   constructor() {
     if (!this.peer) {
-      this.peer = new RTCPeerConnection({
-        iceServers: [
-          {
-            urls: [
-              "stun:stun.l.google.com:19302",
-              "stun:global.stun.twilio.com:3478",
-            ],
-          },
-        ],
+      if (typeof window !== 'undefined') {
+        this.peer = new RTCPeerConnection({
+          iceServers: [
+            {
+              urls: [
+                "stun:stun.l.google.com:19302",
+                "stun:global.stun.twilio.com:3478",
+              ],
+            },
+          ],
 
-        sdpSemantics: 'unified-plan'
-      });
-      this._transceiversInit = false;
-      this._localStreamAdded = false;
+          sdpSemantics: 'unified-plan'
+        });
+        this._transceiversInit = false;
+        this._localStreamAdded = false;
+      }
     }
   }
 
@@ -64,7 +66,7 @@ class PeerService {
         this._localStreamAdded = true;
       }
     }
-    catch(error){
+    catch (error) {
       console.log(error);
     }
   }
@@ -101,13 +103,13 @@ class PeerService {
 
   async getOffer() {
     if (this.peer) {
-      try{
-      this.initTransceivers();
-      const offer = await this.peer.createOffer();
-      await this.peer.setLocalDescription(new RTCSessionDescription(offer));
-      return offer;
+      try {
+        this.initTransceivers();
+        const offer = await this.peer.createOffer();
+        await this.peer.setLocalDescription(new RTCSessionDescription(offer));
+        return offer;
       }
-      catch(error){
+      catch (error) {
         console.log(error);
         return null;
       }
