@@ -28,11 +28,9 @@ const storage=multer.diskStorage({
 const upl= multer({storage:storage})
 
 const corsOptions = {
-    origin: function (origin, callback) {
-      callback(null, origin); // Allow all origins (not '*')
-    },
-    credentials: true, // This allows cookies to be sent
-  };
+    origin: true, // Allows requests from any origin
+    credentials: true, // Allow sending cookies
+};
 
 const app = express();
 const server = http.createServer(app);
@@ -43,7 +41,6 @@ setupSocket(app, server, emailtosocketmapping, sockettoemailmapping);
 
 app.use(express.json());
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
 
 app.use(cookieParser());
 app.use(express.urlencoded({extended:false}));
