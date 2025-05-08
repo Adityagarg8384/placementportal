@@ -20,7 +20,7 @@ const Temp = () => {
   };
 
   const copyRoomIdWithPrefix = () => {
-    const prefixedId = `http://localhost:3001/room/${roomid}`;
+    const prefixedId = `http://placementportal-eta.vercel.app/room/${roomid}`;
     navigator.clipboard.writeText(prefixedId)
       .then(() => {
         setCopied(true);

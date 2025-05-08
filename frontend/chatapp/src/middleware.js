@@ -8,10 +8,10 @@ export async function middleware(req) {
     // const token= localStorage.getItem("token");
     console.log("Token is ", token);
 
-    const loginUrl = process.env.NEXT_PUBLIC_LOGIN_URL || "http://localhost:3001/login";
-    const homeUrl = process.env.NEXT_PUBLIC_HOME_URL || "http://localhost:3001/";
-    const recruiterUrl= "http://localhost:3001/recruiterdashboard"
-    const studentUrl="http://localhost:3001/posts"
+    const loginUrl = process.env.NEXT_PUBLIC_LOGIN_URL || "http://placementportal-eta.vercel.app/login";
+    const homeUrl = process.env.NEXT_PUBLIC_HOME_URL || "http://placementportal-eta.vercel.app/";
+    const recruiterUrl= "http://placementportal-eta.vercel.app/recruiterdashboard"
+    const studentUrl="http://placementportal-eta.vercel.app/posts"
 
     if (!token) {
         if (
@@ -43,7 +43,7 @@ export async function middleware(req) {
             }
         }
         catch(err){
-            const loginurl= "http://localhost:3001/login"
+            const loginurl= "http://placementportal-eta.vercel.app/login"
             console.error("JWT verification failed:", err);
             return NextResponse.redirect(loginurl);
         }
