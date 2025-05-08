@@ -39,7 +39,7 @@ const Component3part2part2 = () => {
             });
 
             if (!response?.ok) {
-                await fetch(`http://placementportal-hhm9.onrender.com/send/${selectedConversation?._id}`, {
+                await fetch(`https://placementportal-hhm9.onrender.com/send/${selectedConversation?._id}`, {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -66,13 +66,13 @@ const Component3part2part2 = () => {
                 throw new Error("Selected conversation is invalid");
             }
 
-            const response = await fetch(`http://placementportal-hhm9.onrender.com/receiverecruitermessage/${selectedConversation?._id}`, {
+            const response = await fetch(`https://placementportal-hhm9.onrender.com/receiverecruitermessage/${selectedConversation?._id}`, {
                 method: "GET",
                 credentials: "include",
             });
 
             if (!response?.ok) {
-                await fetch(`http://placementportal-hhm9.onrender.com/sendrecruitermessage/${selectedConversation?._id}`, {
+                await fetch(`https://placementportal-hhm9.onrender.com/sendrecruitermessage/${selectedConversation?._id}`, {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -124,7 +124,7 @@ const Component3part2part2 = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch(`http://placementportal-hhm9.onrender.com/send/${selectedConversation?._id}`, {
+            const response = await fetch(`https://placementportal-hhm9.onrender.com/send/${selectedConversation?._id}`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -150,7 +150,7 @@ const Component3part2part2 = () => {
 
     const handleRecruiterSubmit= async()=>{
         try{
-            const response = await fetch(`http://placementportal-hhm9.onrender.com/sendrecruitermessage/${selectedConversation?._id}`, {
+            const response = await fetch(`https://placementportal-hhm9.onrender.com/sendrecruitermessage/${selectedConversation?._id}`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

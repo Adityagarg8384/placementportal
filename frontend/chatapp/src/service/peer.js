@@ -1,19 +1,33 @@
 class PeerService {
   constructor() {
-    // if (typeof window !== "undefined") {
-      if (!this.peer) {
-        this.peer = new RTCPeerConnection({
-          iceServers: [
-            {
-              urls: [
-                "stun:stun.l.google.com:19302",
-                "stun:global.stun.twilio.com:3478",
-              ],
-            },
-          ],
-        });
-      }
-    // }
+    if (!this.peer) {
+      this.peer = new RTCPeerConnection({
+        iceServers: [
+          {
+            urls: [
+              "stun:stun.l.google.com:19302",
+              "stun:global.stun.twilio.com:3478",
+            ],
+          },
+        ],
+
+        sdpSemantics: 'unified-plan'
+      });
+      this._transceiversInit = false;
+      this._localStreamAdded = false;
+    }
+  }
+
+  initTransceivers() {
+    // if you need to send audio:
+    if (!this._transceiversInit) {
+      this.peer.addTransceiver('audio', { direction: 'sendrecv' });
+      // if you need to send video:
+      this.peer.addTransceiver('video', { direction: 'sendrecv' });
+      // if you want a data channel (this shows up as m=application):
+      this.dataChannel = this.peer.createDataChannel('chat');
+      this._transceiversInit = true;
+    }
   }
 
   // initializePeer() {
@@ -37,6 +51,24 @@ class PeerService {
   //   }
   // }
 
+  addLocalStream(stream) {
+    try {
+      this.initTransceivers();
+      if (!this._localStreamAdded) {
+        const senders = this.peer.getSenders();
+        stream.getTracks().forEach(track => {
+          if (!senders.some(s => s.track === track)) {
+            this.peer.addTrack(track, stream);
+          }
+        });
+        this._localStreamAdded = true;
+      }
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
   async getAnswer(offer) {
     if (!offer || !offer.type || !offer.sdp) {
       console.error("Invalid offer:", offer);
@@ -55,17 +87,30 @@ class PeerService {
     }
   }
 
-  async setLocalDescription(ans) {
+  async setRemoteAnswer(ans) {
     if (this.peer) {
-      await this.peer.setRemoteDescription(new RTCSessionDescription(ans));
+      console.log(ans);
+      try {
+        await this.peer.setRemoteDescription(new RTCSessionDescription(ans));
+      }
+      catch (error) {
+        console.log(error);
+      }
     }
   }
 
   async getOffer() {
     if (this.peer) {
+      try{
+      this.initTransceivers();
       const offer = await this.peer.createOffer();
       await this.peer.setLocalDescription(new RTCSessionDescription(offer));
       return offer;
+      }
+      catch(error){
+        console.log(error);
+        return null;
+      }
     }
   }
 
