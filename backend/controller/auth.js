@@ -117,8 +117,8 @@ const login = async (req, res) => {
 
         const options = {
             expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-            httpOnly: true,
-            secure: true,
+            httpOnly: false,
+            secure: false,
         };
 
         res.cookie("token", token, options);
