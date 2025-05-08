@@ -13,41 +13,41 @@ export async function middleware(req) {
     const recruiterUrl= "http://placementportal-eta.vercel.app/recruiterdashboard"
     const studentUrl="http://placementportal-eta.vercel.app/posts"
 
-    if (!token) {
-        if (
-            req?.nextUrl?.pathname !== '/login' && 
-            req?.nextUrl?.pathname !== '/register'      
-        ) {
-            return NextResponse.redirect(loginUrl);
-        }
-    } else {
-        if (req?.nextUrl?.pathname === '/login' || req?.nextUrl?.pathname === '/register') {
-            return NextResponse.redirect(homeUrl);
-        }
-        try{
-            const secretKey = new TextEncoder().encode("shhh");
+    // if (!token) {
+    //     if (
+    //         req?.nextUrl?.pathname !== '/login' && 
+    //         req?.nextUrl?.pathname !== '/register'      
+    //     ) {
+    //         return NextResponse.redirect(loginUrl);
+    //     }
+    // } else {
+    //     if (req?.nextUrl?.pathname === '/login' || req?.nextUrl?.pathname === '/register') {
+    //         return NextResponse.redirect(homeUrl);
+    //     }
+    //     try{
+    //         const secretKey = new TextEncoder().encode("shhh");
 
-            const { payload } = await jwtVerify(token?.value, secretKey);
+    //         const { payload } = await jwtVerify(token?.value, secretKey);
 
-            const role = payload.role
+    //         const role = payload.role
 
-            const studentProtectedRoutes = ["/post/:path*", "/posts"];
-            const recruiterProtectedRoutes = ["/createpost", "/recruiterpost", "/recruiterdashboard"];
+    //         const studentProtectedRoutes = ["/post/:path*", "/posts"];
+    //         const recruiterProtectedRoutes = ["/createpost", "/recruiterpost", "/recruiterdashboard"];
 
-            if (role === "student" && recruiterProtectedRoutes.includes(req.nextUrl.pathname)) {
-                return NextResponse.redirect(studentUrl);
-            }
+    //         if (role === "student" && recruiterProtectedRoutes.includes(req.nextUrl.pathname)) {
+    //             return NextResponse.redirect(studentUrl);
+    //         }
 
-            if (role === "recruiter" && studentProtectedRoutes.includes(req.nextUrl.pathname)) {
-                return NextResponse.redirect(recruiterUrl);
-            }
-        }
-        catch(err){
-            const loginurl= "http://placementportal-eta.vercel.app/login"
-            console.error("JWT verification failed:", err);
-            return NextResponse.redirect(loginurl);
-        }
-    }
+    //         if (role === "recruiter" && studentProtectedRoutes.includes(req.nextUrl.pathname)) {
+    //             return NextResponse.redirect(recruiterUrl);
+    //         }
+    //     }
+    //     catch(err){
+    //         const loginurl= "http://placementportal-eta.vercel.app/login"
+    //         console.error("JWT verification failed:", err);
+    //         return NextResponse.redirect(loginurl);
+    //     }
+    // }
 
     return NextResponse.next();
 }
