@@ -23,7 +23,7 @@ const SCOPES = [
   ];
   
 
-export const createspreadsheet = async (title) => {
+export const createsheet = async (title) => {
     try {
         console.log("Key filepath is ", KEYFILEPATH);
         const auth = new google.auth.GoogleAuth({
@@ -99,7 +99,7 @@ export const createspreadsheet = async (title) => {
 }
 
 
-export const addspreadsheet = async (id, data) => {
+export const addsheet = async (id, data) => {
     try {
 
         const auth = new google.auth.GoogleAuth({
@@ -135,7 +135,7 @@ export const addspreadsheet = async (id, data) => {
 
 }
 
-export const deletespreadsheet = async (spreadsheetid, userid) => {
+export const deletesheet = async (spreadsheetid, userid) => {
     try {
         const auth = new google.auth.GoogleAuth({
             keyFile: KEYFILEPATH,
@@ -179,7 +179,7 @@ export const deletespreadsheet = async (spreadsheetid, userid) => {
     }
 }
 
-export const downloadspreadsheet = async (spreadsheetId) => {
+export const downloadsheet = async (spreadsheetId) => {
     try {
         // Initialize the Google Drive API client
         const auth = new google.auth.GoogleAuth({
