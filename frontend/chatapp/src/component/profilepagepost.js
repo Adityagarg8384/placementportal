@@ -10,7 +10,7 @@ const ProfilePagePost = () => {
     useEffect(() => {
         const fetchUserPosts = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/getuserpost/${user?._id}`, {
+                const response = await fetch(`https://placementportal-hhm9.onrender.com/getuserpost/${user?._id}`, {
                     method: "GET",
                     credentials: "include",
                 });

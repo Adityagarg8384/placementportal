@@ -12,7 +12,7 @@ export const Pagedetails = ({ postid }) => {
     useEffect(() => {
         const m = async (req, res) => {
             try {
-                const response = await fetch(`http://localhost:3000/getpost/${postid}`, {
+                const response = await fetch(`https://placementportal-hhm9.onrender.com/getpost/${postid}`, {
                     method: "GET",
                     withCredentials: true,
                 })

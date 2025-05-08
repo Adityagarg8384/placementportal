@@ -33,7 +33,7 @@ const Component3part2part2 = () => {
                 throw new Error("Selected conversation is invalid");
             }
 
-            const response = await fetch(`http://localhost:3000/receive/${selectedConversation?._id}`, {
+            const response = await fetch(`https://placementportal-hhm9.onrender.com/receive/${selectedConversation?._id}`, {
                 method: "GET",
                 credentials: "include",
             });

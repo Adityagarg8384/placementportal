@@ -50,7 +50,7 @@ const ProfileDescription = () => {
         if (role == "student") {
             const fetchData = async () => {
                 try {
-                    const getresponse = await fetch(`http://localhost:3000/getspecificuser`, {
+                    const getresponse = await fetch(`https://placementportal-hhm9.onrender.com/getspecificuser`, {
                         method: "GET",
                         credentials: "include",
                     });
@@ -131,7 +131,7 @@ const ProfileDescription = () => {
 
                 const d = { pdfid: "0" }; 
 
-                const rese = await fetch(`http://localhost:3000/updateuser/${user?._id}`, {
+                const rese = await fetch(`https://placementportal-hhm9.onrender.com/updateuser/${user?._id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
@@ -188,7 +188,7 @@ const ProfileDescription = () => {
             if (response?.status == 200) {
                 setShareablelink(`https://drive.google.com/file/d/${response?.data}/view?usp=sharing`)
                 const d = { pdfid: response?.data }
-                const rese = await fetch(`http://localhost:3000/updateuser/${user?._id}`, {
+                const rese = await fetch(`https://placementportal-hhm9.onrender.com/updateuser/${user?._id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
@@ -216,7 +216,7 @@ const ProfileDescription = () => {
         if (uploadstate == true) {
             try {
                 setLoading(true);
-                const response = await fetch(`http://localhost:3000/updateuser/${user?._id}`, {
+                const response = await fetch(`https://placementportal-hhm9.onrender.com/updateuser/${user?._id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",

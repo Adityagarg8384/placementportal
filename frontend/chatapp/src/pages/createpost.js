@@ -78,7 +78,7 @@ const RegistrationForm = () => {
                     return { ...prevData, spreadsheetid: r.data.data }; // Corrected assignment
                 });
             });
-            const response = await fetch("http://localhost:3000/createpost", {
+            const response = await fetch("https://placementportal-hhm9.onrender.com/createpost", {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
@@ -91,7 +91,7 @@ const RegistrationForm = () => {
             if (res?.error || response?.status !== 200) {
                 setError(res?.error || "Failed to create post")
             } else {
-                const response2 = await fetch(`http://localhost:3000/updaterecruiter/${user?._id}`, {
+                const response2 = await fetch(`https://placementportal-hhm9.onrender.com/updaterecruiter/${user?._id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",

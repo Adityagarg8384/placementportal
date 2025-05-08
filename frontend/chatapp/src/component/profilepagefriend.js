@@ -8,7 +8,7 @@ const ProfilePageFriend = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await fetch("http://localhost:3000/getuser", {
+                const response = await fetch("https://placementportal-hhm9.onrender.com/getuser", {
                     method: "GET",
                     credentials: "include",
                 });

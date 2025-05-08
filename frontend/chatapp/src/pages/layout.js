@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
 
     const logout = async () => {
         try {
-            const response = await fetch("http://localhost:3000/logout", {
+            const response = await fetch("https://placementportal-hhm9.onrender.com/logout", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

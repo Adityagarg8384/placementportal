@@ -13,7 +13,7 @@ const CompanyList = () => {
   useEffect(() => {
     const m = async (req, res) => {
       try {
-        const response = await fetch(`http://localhost:3000/getpost/${recruiterpostid}`, {
+        const response = await fetch(`https://placementportal-hhm9.onrender.com/getpost/${recruiterpostid}`, {
           method: "GET",
           withCredentials: true,
         })

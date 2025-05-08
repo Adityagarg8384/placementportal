@@ -62,7 +62,7 @@ export default function App({ Component, pageProps }) {
 
   const socket = useMemo(
     () =>
-      io("http://localhost:3000")
+      io("https://placementportal-hhm9.onrender.com")
     , []
   )
 

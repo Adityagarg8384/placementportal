@@ -30,7 +30,7 @@ const Recruiterprofile = () => {
         if (uploadstate == true) {
             try {
                 setLoading(true);
-                const response = await fetch(`http://localhost:3000/updaterecruiter/${user?._id}`, {
+                const response = await fetch(`https://placementportal-hhm9.onrender.com/updaterecruiter/${user?._id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",

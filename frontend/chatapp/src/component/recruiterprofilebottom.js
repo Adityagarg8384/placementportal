@@ -15,7 +15,7 @@ const RecruiterProfileBottom = () => {
       if (user && user?.post && user?.post?.length > 0) {
         try {
           const responses = await Promise.all(
-            user?.post?.map(id => fetch(`http://localhost:3000/getpost/${id}`, {
+            user?.post?.map(id => fetch(`https://placementportal-hhm9.onrender.com/getpost/${id}`, {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',

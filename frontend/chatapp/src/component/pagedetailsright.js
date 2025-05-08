@@ -32,7 +32,7 @@ export const Pagedetailsright = ({ postid, postdata }) => {
 
     const handleApply = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/updateuser/${user?._id}`, {
+            const response = await fetch(`https://placementportal-hhm9.onrender.com/updateuser/${user?._id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ jobapplied: postdata?._id }),
@@ -61,7 +61,7 @@ export const Pagedetailsright = ({ postid, postdata }) => {
 
     const handleWithdraw = async () => {
         try {
-            const response = await fetch("http://localhost:3000/removejobapplied", {
+            const response = await fetch("https://placementportal-hhm9.onrender.com/removejobapplied", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ userid: user?._id, jobid: post?._id }),
@@ -108,7 +108,7 @@ export const Pagedetailsright = ({ postid, postdata }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:3000/getspecificuser", {
+                const response = await fetch("https://placementportal-hhm9.onrender.com/getspecificuser", {
                     method: "GET",
                     credentials: "include",
                 });

@@ -75,6 +75,7 @@ export const Login = () => {
     };
 
     const Submitform = async (e) => {
+        console.log("Hello world");
         e.preventDefault();
         if (!validateForm()) return;
         setErrormessage("")
@@ -89,12 +90,12 @@ export const Login = () => {
                 credentials: "include",
             });
             const res = await response.json();
+            console.log(res);
 
 
             if (res.status === 404) {
                 setErrormessage(res?.message)
             } else {
-                console.log(res);
                 const role = data.student ? "student" : "recruiter";
                 localStorage.setItem("role-data", role);
 
@@ -102,8 +103,6 @@ export const Login = () => {
                 localStorage.setItem("user-chat", JSON.stringify(res?.user));
                 updateUser(res.user);
 
-                console.log("Hello world");
-                console.log(role);
                 if(role=="student"){
                     router.push("/posts")
                 }
