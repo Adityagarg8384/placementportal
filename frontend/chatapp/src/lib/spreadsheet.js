@@ -25,6 +25,7 @@ const SCOPES = [
 
 export const createspreadsheet = async (title) => {
     try {
+        console.log("Key filepath is ", KEYFILEPATH);
         const auth = new google.auth.GoogleAuth({
                         keyFile: KEYFILEPATH,
                         scopes: SCOPES,
