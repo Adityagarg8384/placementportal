@@ -15,7 +15,7 @@ function setupSocket(app, server, emailtosocketmapping, sockettoemailmapping) {
         }
         callback(new Error('CORS policy violation'));
       },
-      methods: ['GET', 'POST'],
+      methods: ['GET', 'POST','PUT','DELETE'],
       allowedHeaders: ['my-custom-header'],
       credentials: true
     }

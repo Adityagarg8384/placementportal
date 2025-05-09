@@ -50,7 +50,7 @@ app.use(cors({
         }
         callback(new Error('CORS policy violation'));
     },
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST','PUT','DELETE'],
     allowedHeaders: ['Content-Type', 'my-custom-header'],
     credentials: true
 }));
