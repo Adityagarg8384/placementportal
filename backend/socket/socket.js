@@ -4,7 +4,7 @@ function setupSocket(app, server, emailtosocketmapping, sockettoemailmapping) {
 
   const allowedOrigins = [
     'http://localhost:3000',
-    'https://yourdomain.com',
+    'https://placementportal-eta.vercel.app',
     'https://staging.yourdomain.com'
   ];
   const io = new Server(server, {
