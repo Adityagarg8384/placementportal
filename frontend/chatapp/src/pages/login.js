@@ -77,7 +77,10 @@ export const Login = () => {
     const Submitform = async (e) => {
         console.log("Hello world");
         e.preventDefault();
-        if (!validateForm()) return;
+        if (!validateForm()){ 
+            setErrormessage("Please fill all the fields correctly");
+            return
+        };
         setErrormessage("")
         try {
             const response = await fetch("https://placementportal-hhm9.onrender.com/login", {

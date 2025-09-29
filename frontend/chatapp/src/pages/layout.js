@@ -82,6 +82,11 @@ const Layout = ({ children }) => {
                                 Chat
                             </Link>
                         </li>
+                        <li className='mb-4'>
+                            <Link href="/temp" className="nav-item text-white p-3 block rounded">
+                                Video Call
+                            </Link>
+                        </li>
                         {role === "recruiter" && (
                             <>
                                 <li className="mb-4">
