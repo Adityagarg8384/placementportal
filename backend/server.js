@@ -82,8 +82,24 @@ app.get("/getpost/:id", getpost);
 
 app.use("/", router);
 
-dbconnect();
+// dbconnect();
 
-server.listen(3000, () => {
-    console.log("App has successfully started on Port 3000");
-});
+// server.listen(3000, () => {
+//     console.log("App has successfully started on Port 3000");
+// });
+
+const startServer = async () => {
+  try {
+    await dbconnect(); // wait until DB is connected
+
+    server.listen(3000, () => {
+      console.log("App has successfully started on Port 3000");
+    });
+  } catch (err) {
+    console.error("Failed to connect to database:", err);
+    process.exit(1); // stop server if DB cannot connect
+  }
+};
+
+startServer();
+
