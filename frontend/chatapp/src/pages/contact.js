@@ -17,26 +17,26 @@ const Contact = () => {
                     </div>
                 </div>
                 <div>
-                    <h2 className="text-lg font-semibold">Rajesh Rawat</h2>
+                    <h2 className="text-lg font-semibold">Rahul Chaudhary</h2>
                     <div className="flex items-center space-x-2">
                         <FaPhoneAlt className="text-blue-500 text-lg" />
                         <div>
-                            <strong>Mobile:</strong> +91 9205475078, +91 9810472670
+                            <strong>Mobile:</strong> +91 9057375834, +91 8568487546
                         </div>
                     </div>
                     <div className="flex items-center space-x-2">
                         <FaEnvelope className="text-orange-500 text-lg" />
                         <div>
-                            <strong>Email:</strong> <a href="mailto:rajesh.rawat@nsut.ac.in" className="text-blue-600 hover:underline">rajesh.rawat@nsut.ac.in</a>
+                            <strong>Email:</strong> <a href="mailto:rahulchaudhary@nsut.ac.in" className="text-blue-600 hover:underline">rajesh.rawat@nsut.ac.in</a>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <h2 className="text-lg font-semibold">Dr. MPS Bhatia</h2>
+                    <h2 className="text-lg font-semibold">Manish Bhat</h2>
                     <div className="flex items-center space-x-2">
                         <FaPhoneAlt className="text-blue-500 text-lg" />
                         <div>
-                            <strong>Mobile:</strong> +91 9818192294
+                            <strong>Mobile:</strong> +91 8997875787
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const PORTURL=process.env.PORTURL
 
-const dbconnect= ()=>{
+const dbconnect= async ()=>{
     // console.log(PORTURL)
     // mongoose.connect("mongodb://localhost:27017").then(()=>{
     //     console.log("connected to databse");
@@ -13,7 +13,7 @@ const dbconnect= ()=>{
     //     console.log("Some error occurred");
     // })
    
-    mongoose.connect(PORTURL).then(()=>{
+    await mongoose.connect(PORTURL).then(()=>{
         console.log("connected to databse");
     })
     .catch((err)=>{

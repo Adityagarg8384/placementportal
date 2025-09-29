@@ -54,10 +54,10 @@ const signup = async (req, res) => {
         );
 
         const options = {
-            expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-            httpOnly: false,
-            secure: false,
-            domain: "localhost",
+            httpOnly: true,
+            secure: true,       // important for cross-origin
+            sameSite: 'None',   // must be None for cross-site cookies
+            expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000) // 3 days
         };
 
         res.cookie("token", token, options);
@@ -146,7 +146,11 @@ const login = async (req, res) => {
 
 const logout = async (req, res) => {
     try {
-        res.clearCookie("token");
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+        });
         return res.status(200).json({ message: "Logged Out successfully" });
     } catch (err) {
         return res.status(500).json({
